@@ -1,0 +1,97 @@
+---
+title: "Mellinger-Garrett_individual-assignment-05"
+author: "Garrett Mellinger"
+date: "2026-05-10"
+format: pdf
+editor: source
+execute: 
+  message: false
+  warning: false
+---
+
+# Set up
+
+## Packages
+
+```{r}
+#|label: packages
+
+# general use and cleaning
+library(tidyverse)
+library(here)
+library(janitor)
+library(snakecase)
+
+# wrapping axis labels
+library(scales)
+
+# reading in .xlsx files
+library(readxl)
+
+# visualizing missing data
+library(naniar)
+
+# arranging plots
+library(patchwork)
+```
+
+
+## Data
+
+```{r}
+#| label: data
+
+# taxonomic information
+taxon_list <- read_csv(here("data", "taxon_list.csv")) 
+
+# aquatic invertebrates
+aq_ins <- read_xlsx(here("data", "Aquatic Sampling Data-2026-03-10.xlsx"),
+                    sheet = "Aquatic Insects") 
+
+# site information
+sites <- read_xlsx(here("data", "Aquatic Sampling Data-2026-03-10.xlsx"),
+                   sheet = "sites")
+
+# water quality information
+water_quality <- read_xlsx(here("data", "Aquatic Sampling Data-2026-03-10.xlsx"),
+                           sheet = "Water Quality",
+                           na = c("", "n/a", "N/A", "over", "173+")) 
+```
+
+
+## Cleaning
+
+## `sites` object
+
+Goal: create a new object from `sites` that only includes NCOS sites
+
+Use: filter downstream data frames using new object
+
+```{r}
+#| label: ncos site object
+
+# creating new object from sites
+ncos_sites <- sites |> 
+  # filter to only include NCOS sites sampled four times a year
+  filter(sector == "NCOS" & sampling_frequency == "Quarterly")
+```
+
+
+## Cleaning `taxon_list`
+
+Goal: convert character strings in existing `taxon_list` data frame into snake case
+
+Use: join with aquatic inverts to attach taxonomic information to species IDs
+
+```{r}
+#| label: cleaning-taxon-list
+
+# creating new clean object from taxon_list
+taxon_list_clean <- taxon_list |> 
+  # converting taxon name to snake case (no spaces or capital letters,
+  # only underscores)
+  mutate(verbatim_name = to_any_case(verbatim_name, case = "snake"))
+```
+
+
+
