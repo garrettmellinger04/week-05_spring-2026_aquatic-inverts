@@ -28,9 +28,6 @@ library(scales)
 # reading in .xlsx files
 library(readxl)
 
-# visualizing missing data
-library(naniar)
-
 # arranging plots
 library(patchwork)
 ```
@@ -244,7 +241,7 @@ ostracods <- ggplot(data = ostracod_df,
   # relabelling x- and y-axis, adding title
   labs(x = "Site",
        y = "log + 1 transformed average abundance/L",
-       title = "Ostracods average abundance by site") +
+       title = "Ostracods") +
   # different theme
   theme_bw()
 
@@ -277,7 +274,7 @@ salinity <- ggplot(data = aq_ins_clean,
   # relabelling axes and adding title
   labs(x = "Site",
        y = "Median salinity (ppt)",
-       title = "Site salinity") +
+       title = "Salinity") +
   # changing theme
   theme_bw()
 
@@ -305,8 +302,8 @@ copepods <- ggplot(data = copepod_df,
   scale_x_discrete(labels = label_wrap(15)) +
   # relabelling axes and adding title
   labs(x = "Site",
-       y = "log + 1 average abundance/L",
-       title = "Copepods average abundance by site") +
+       y = "log + 1 transformed average abundance/L",
+       title = "Copepods") +
   # changing theme
   theme_bw()
 
@@ -393,12 +390,8 @@ salinity_abundance <- ggplot(data = salinity_abundance_df,
 salinity_abundance
 ```
 
+### d. Interpretation
 
-
-
-
-
-
-
+Diptera Ceratopogonidae, Hemiptera Corixidae Boatman, Copepod, and Ostracod, appear to be more abundant at lower salinity, but also each experience another zone of elevated abundance, around 40 ppt salinity, where the points again increase in height along the y axis. Based on the uniformity of the position of the points along the y axis at all x axis values, it appears that Nematode and Annelida Polychaete abundance is not impacted by salinity. Based on the generally negative linear trend across most taxon, we can say that salinity limits aquatic invertebrate abundance at high levels (> 40 ppt) at NCOS.
 
 
