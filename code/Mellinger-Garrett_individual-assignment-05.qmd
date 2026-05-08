@@ -243,7 +243,7 @@ ostracods <- ggplot(data = ostracod_df,
   scale_x_discrete(labels = label_wrap(15)) +
   # relabelling x- and y-axis, adding title
   labs(x = "Site",
-       y = "log +1 average abundance/L",
+       y = "log + 1 transformed average abundance/L",
        title = "Ostracods average abundance by site") +
   # different theme
   theme_bw()
@@ -251,6 +251,70 @@ ostracods <- ggplot(data = ostracod_df,
 # displaying object
 ostracods
 ```
+
+### d. Creating multipanel figure
+
+```{r}
+#| label: multipanel figure
+#| fig-width: 14
+#| fig-height: 10
+
+# base layer for salinity plot
+salinity <- ggplot(data = aq_ins_clean,
+                   mapping = aes(x = site_full,
+                                 y = med_sal)) +
+  # points representing salinity observations
+  geom_jitter(height = 0,
+              width = 0.1,
+              shape = 21) +
+  # points representing median salinity
+  stat_summary(fun = median,
+               geom = "point",
+               size = 4,
+               color = "red") +
+  # wrapping x-axis labels
+  scale_x_discrete(labels = label_wrap(15)) +
+  # relabelling axes and adding title
+  labs(x = "Site",
+       y = "Median salinity (ppt)",
+       title = "Site salinity") +
+  # changing theme
+  theme_bw()
+
+# create copepod dataframe
+copepod_df <- aq_ins_clean |> 
+  # keep only copepod observations
+  filter(taxon == "copepod") |> 
+  # create log transformed abundance column
+  mutate(log_abundance = log(ave_lit + 1))
+
+# base layer of copepod plot
+copepods <- ggplot(data = copepod_df,
+                   mapping = aes(x = site_full,
+                                 y = log_abundance)) +
+  # points representing observations
+  geom_jitter(height = 0,
+              shape = 21,
+              width = 0.1) +
+  # points representing medians
+  stat_summary(geom = "point",
+               fun = "median",
+               size = 4,
+               color = "green") +
+  # wrapping x-axis text
+  scale_x_discrete(labels = label_wrap(15)) +
+  # relabelling axes and adding title
+  labs(x = "Site",
+       y = "log + 1 average abundance/L",
+       title = "Copepods average abundance by site") +
+  # changing theme
+  theme_bw()
+
+# combining plots into multipanel figure
+salinity / (copepods | ostracods)
+```
+
+
 
 
 
