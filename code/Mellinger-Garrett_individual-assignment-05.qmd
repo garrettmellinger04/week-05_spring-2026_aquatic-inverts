@@ -315,6 +315,14 @@ salinity / (copepods | ostracods)
 ```
 
 
+### e. Interpretation
+
+As shown in the low position along the y axis of the blue and green median abundance values, both Ostracods and Copepods appear to be less abundant at Main Channel and North of Phelps Bridge. As shown in the high position along the y axis of the blue and green median abundance values, the highest median Ostracod abundance occurs South of Phelps Bridge, while the highest median Copepod abundance occurs South of Venoco Bridge.
+
+While other factors may explain Ostracod abundance North of Phelps Bridge and at Phelps Road where salinity and abundance are both low, salinity appears to have an inverse relationship with Ostracod abundance across the rest of the sites. This is shown, for example, South of Phelps Bridge, where the red median salinity point is low on its y axis, and the blue median Ostracod abundance is high on its y axis.
+
+
+# 2. Visualizing total abundance as a function of salinity
 
 
 
