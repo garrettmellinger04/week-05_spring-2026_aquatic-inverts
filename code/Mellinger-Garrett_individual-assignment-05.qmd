@@ -361,6 +361,41 @@ salinity_abundance_df |>
   slice_sample(n = 10)
 ```
 
+### c. Code
+
+```{r}
+#| label: visualizing salinity abundance
+#| fig-width: 12
+#| fig-height: 10
+
+# base layer as the salinity abundance dataframe we just created
+salinity_abundance <- ggplot(data = salinity_abundance_df,
+                             # x-axis: salinity
+                             # y-axis: log transformed abundance
+                             mapping = aes(x = med_sal,
+                                           y = log_abundance,
+                                           color = taxon)) +
+  # points representing observations
+  geom_point() +
+  # create separate panels for each taxon
+  facet_wrap(~ taxon,
+             scales = "free") +
+  # relabelling axes
+  labs(x = "Median salinity (ppt)",
+       y = "log + 1 transformed average abundance/L") +
+  # changing color palette
+  scale_color_viridis_d() +
+  # removing legend
+  theme_bw() +
+  theme(legend.position = "none")
+
+# displaying plot
+salinity_abundance
+```
+
+
+
+
 
 
 
