@@ -202,6 +202,22 @@ aq_ins_clean <- aq_ins |>
 
 ### b. Wrangling
 
+```{r}
+#|label: wrangling ostracod data
+
+# create new dataframe from aq_ins_clean
+ostracod_df <- aq_ins_clean |> 
+  # keep only ostracod observations
+  filter(taxon == "ostracod") |> 
+  # create column with log transformed abundance
+  mutate(log_abundance = log10(ave_lit + 1))
+
+# display 10 random rows from data frame
+ostracod_df |> 
+  slice_sample(n = 10)
+```
+
+### c. 
 
 
 
