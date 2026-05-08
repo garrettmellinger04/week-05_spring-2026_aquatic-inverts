@@ -324,6 +324,46 @@ While other factors may explain Ostracod abundance North of Phelps Bridge and at
 
 # 2. Visualizing total abundance as a function of salinity
 
+### a. Planning
+
+- x-axis: `med_sal` salinity (ppt)
+
+- y-axis: `ave_lit` log-transformed average abundance/L
+
+- color: `taxon`
+
+- geometry: points
+
+- facets: `facet_wrap(~ taxon, scales = "free")`
+
+### b. Wrangling
+
+```{r}
+#| label: wrangling salinity abundance data
+
+# create new dataframe from aq_ins_clean
+salinity_abundance_df <- aq_ins_clean |> 
+  # keep columns needed for visualization
+  select(taxon,
+         ave_lit,
+         med_sal) |> 
+  # create new columns for plotting
+  mutate(log_abundance = log(ave_lit + 1),
+         # making sure each taxon in title case
+         taxon = to_any_case(taxon, case = "title")) |> 
+  # order taxon levels by maximum abundance
+  mutate(taxon = fct_reorder(taxon,
+                             ave_lit,
+                             .fun = max))
+
+# display 10 random rows from data frame
+salinity_abundance_df |> 
+  slice_sample(n = 10)
+```
+
+
+
+
 
 
 
