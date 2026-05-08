@@ -31,6 +31,7 @@ library(patchwork)
 │   ├── Aquatic Sampling Data-2026-03-10.xlsx # invertebrate survey data
 │   └── taxon_list.csv                        # taxonomic information
 └── week-05_spring-2026_aquatic-inverts.Rproj
+```
 
 ## Rendered output
 
