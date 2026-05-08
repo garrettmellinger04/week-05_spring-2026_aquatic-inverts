@@ -210,14 +210,48 @@ ostracod_df <- aq_ins_clean |>
   # keep only ostracod observations
   filter(taxon == "ostracod") |> 
   # create column with log transformed abundance
-  mutate(log_abundance = log10(ave_lit + 1))
+  mutate(log_abundance = log(ave_lit + 1))
 
 # display 10 random rows from data frame
 ostracod_df |> 
   slice_sample(n = 10)
 ```
 
-### c. 
+### c. Coding
+
+```{r}
+#| label: visualizing-ostracods
+#| fig-width: 10
+#| fig-height: 6
+
+# base layer of ggplot as the ostracod dataframe we just created
+ostracods <- ggplot(data = ostracod_df,
+                    # x-axis: site
+                    # y-axis: mean abundance/L
+                    mapping = aes(x = site_full,
+                                  y = log_abundance)) +
+  # points to represent observations
+  geom_jitter(height = 0,
+              shape = 21,
+              width = 0.1) +
+  # points to represent medians
+  stat_summary(geom = "point",
+               fun = "median",
+               size = 4,
+               color = "blue") +
+  # wrapping x-axis text
+  scale_x_discrete(labels = label_wrap(15)) +
+  # relabelling x- and y-axis, adding title
+  labs(x = "Site",
+       y = "log +1 average abundance/L",
+       title = "Ostracods average abundance by site") +
+  # different theme
+  theme_bw()
+
+# displaying object
+ostracods
+```
+
 
 
 
