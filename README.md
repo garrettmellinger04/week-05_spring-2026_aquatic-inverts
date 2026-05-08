@@ -22,17 +22,18 @@ library(patchwork)
 ```
 .
 ├── README.md
-├── code                                          
-│   ├── week-05_in-class-KEY.pdf                  # key (comes with repo)
-│   └── week-05_in-class-KEY.qmd
+├── code
+│   ├── week-05_in-class-KEY.pdf              # key (comes with repo)
+│   ├── week-05_in-class-KEY.qmd
+│   ├── Mellinger-Garrett_individual-assignment-05.pdf # individual assignment
+│   └── Mellinger-Garrett_individual-assignment-05.qmd
 ├── data
-│   ├── Aquatic Sampling Data-2026-03-10.xlsx     # invertebrate survey data
-│   └── taxon_list.csv                            # taxonomic information
+│   ├── Aquatic Sampling Data-2026-03-10.xlsx # invertebrate survey data
+│   └── taxon_list.csv                        # taxonomic information
 └── week-05_spring-2026_aquatic-inverts.Rproj
-```
 
 ## Rendered output
 
 The rendered key for the code in this repository is [here](https://github.com/garrettmellinger04/week-05_spring-2026_aquatic-inverts/blob/main/code/week-05_in-class-KEY.pdf)
 
-The rendered individual assignment is [here](https://github.com/garrettmellinger04/week-05_spring-2026_aquatic-inverts/blob/main/code/Mellinger-Garrett_individual-assignment-05.pdf)
+The rendered output for the individual assignment is [here](https://github.com/garrettmellinger04/week-05_spring-2026_aquatic-inverts/blob/main/code/Mellinger-Garrett_individual-assignment-05.pdf)
