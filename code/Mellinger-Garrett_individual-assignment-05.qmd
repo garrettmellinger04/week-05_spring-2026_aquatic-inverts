@@ -14,7 +14,7 @@ execute:
 ## Packages
 
 ```{r}
-#|label: packages
+#| label: packages
 
 # general use and cleaning
 library(tidyverse)
@@ -200,7 +200,7 @@ aq_ins_clean <- aq_ins |>
 ### b. Wrangling
 
 ```{r}
-#|label: wrangling ostracod data
+#| label: wrangling ostracod data
 
 # create new dataframe from aq_ins_clean
 ostracod_df <- aq_ins_clean |> 
@@ -217,7 +217,7 @@ ostracod_df |>
 ### c. Coding
 
 ```{r}
-#| label: visualizing-ostracods
+#| label: visualizing ostracods
 #| fig-width: 10
 #| fig-height: 6
 
@@ -340,13 +340,13 @@ While other factors may explain Ostracod abundance North of Phelps Bridge and at
 
 # create new dataframe from aq_ins_clean
 salinity_abundance_df <- aq_ins_clean |> 
-  # keep columns needed for visualization
+  # keep only columns needed for visualization
   select(taxon,
          ave_lit,
          med_sal) |> 
   # create new columns for plotting
   mutate(log_abundance = log(ave_lit + 1),
-         # making sure each taxon in title case
+         # making sure each taxon is in title case
          taxon = to_any_case(taxon, case = "title")) |> 
   # order taxon levels by maximum abundance
   mutate(taxon = fct_reorder(taxon,
